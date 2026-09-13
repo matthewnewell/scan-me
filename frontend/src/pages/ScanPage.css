@@ -1,0 +1,156 @@
+.scan-page__content {
+  max-width: 900px;
+  margin: 0;
+  padding: 32px 20px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.scan-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scan-page__title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.scan-page__lede {
+  margin: 0;
+  max-width: 68ch;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.scan-page__form {
+  display: flex;
+  gap: 8px;
+}
+
+.scan-page__input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.scan-page__input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -1px;
+}
+
+.scan-page__error {
+  margin: -12px 0 0;
+  font-size: 13px;
+  color: var(--color-critical);
+}
+
+.scan-page__history {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scan-page__history-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.scan-page__muted {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-faint);
+}
+
+.scan-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.scan-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text-faint);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.scan-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.scan-table__row {
+  cursor: pointer;
+}
+
+.scan-table__row:hover {
+  background: var(--color-surface-sunken);
+}
+
+.scan-table__row:last-child td {
+  border-bottom: none;
+}
+
+.scan-table__repo {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.scan-table__muted {
+  color: var(--color-text-faint);
+}
+
+.scan-table__num {
+  font-variant-numeric: tabular-nums;
+}
+
+.scan-table__flag-count {
+  font-weight: 700;
+  color: var(--color-critical);
+}
+
+.scan-table__error {
+  color: var(--color-critical);
+  font-size: 12px;
+}
+
+.scan-table__actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.scan-table__delete {
+  border: none;
+  background: transparent;
+  color: var(--color-text-faint);
+  font-size: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.scan-table__delete:hover {
+  background: var(--color-critical-soft);
+  color: var(--color-critical);
+}

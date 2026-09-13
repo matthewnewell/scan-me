@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Scan Me Backend",
+      "runtimeExecutable": "backend/.venv/bin/python",
+      "runtimeArgs": ["app.py"],
+      "cwd": "/home/matthew/scan-me/backend",
+      "port": 8094
+    },
+    {
+      "name": "Scan Me Frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--host", "0.0.0.0"],
+      "cwd": "/home/matthew/scan-me/frontend",
+      "port": 5179
+    }
+  ]
+}
