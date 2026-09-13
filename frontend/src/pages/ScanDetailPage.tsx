@@ -1,8 +1,28 @@
+import type { ReactNode } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useScan } from '../api/hooks'
-import type { DependencyFinding } from '../api/types'
+import type { DependencyFinding, LicenseVerdict } from '../api/types'
 import VerdictPill from '../components/VerdictPill'
 import './ScanDetailPage.css'
+
+type Tone = 'good' | 'warn' | 'bad' | 'neutral'
+
+// Same red/yellow/green a dependency's own verdict pill uses — "unknown" reads as a caution
+// (needs a person to look), not a clean pass, same as everywhere else in the app.
+const LICENSE_VERDICT_TONE: Record<LicenseVerdict, Tone> = {
+  approved: 'good',
+  flagged: 'bad',
+  unknown: 'warn',
+}
+
+function SummaryTile({ label, tone, children }: { label: string; tone: Tone; children: ReactNode }) {
+  return (
+    <div className={`scan-detail__summary-item scan-detail__summary-item--${tone}`}>
+      <span className="scan-detail__summary-label">{label}</span>
+      <div className="scan-detail__summary-value">{children}</div>
+    </div>
+  )
+}
 
 export default function ScanDetailPage() {
   const { scanId } = useParams<{ scanId: string }>()
@@ -53,31 +73,27 @@ export default function ScanDetailPage() {
         </header>
 
         <div className="scan-detail__summary">
-          <div className="scan-detail__summary-item">
-            <span className="scan-detail__summary-label">Repo license</span>
-            <div className="scan-detail__summary-value">
-              <VerdictPill verdict={scan.repo_license_verdict} />
-              <span className="scan-detail__license-text">
-                {scan.repo_license_name ?? scan.repo_license_spdx ?? 'No license file detected'}
-              </span>
-            </div>
-          </div>
-          <div className="scan-detail__summary-item">
-            <span className="scan-detail__summary-label">Dependencies scanned</span>
-            <span className="scan-detail__summary-value">{scan.dependency_count}</span>
-          </div>
-          <div className="scan-detail__summary-item">
-            <span className="scan-detail__summary-label">License flags</span>
-            <span className="scan-detail__summary-value">{scan.license_flag_count}</span>
-          </div>
-          <div className="scan-detail__summary-item">
-            <span className="scan-detail__summary-label">Unknown licenses</span>
-            <span className="scan-detail__summary-value">{scan.license_unknown_count}</span>
-          </div>
-          <div className="scan-detail__summary-item">
-            <span className="scan-detail__summary-label">Vulnerable</span>
-            <span className="scan-detail__summary-value">{scan.vulnerable_count}</span>
-          </div>
+          <SummaryTile
+            label="Repo license"
+            tone={LICENSE_VERDICT_TONE[scan.repo_license_verdict ?? 'unknown']}
+          >
+            <VerdictPill verdict={scan.repo_license_verdict} />
+            <span className="scan-detail__license-text">
+              {scan.repo_license_name ?? scan.repo_license_spdx ?? 'No license file detected'}
+            </span>
+          </SummaryTile>
+          <SummaryTile label="Dependencies scanned" tone="neutral">
+            {scan.dependency_count}
+          </SummaryTile>
+          <SummaryTile label="License flags" tone={scan.license_flag_count > 0 ? 'bad' : 'good'}>
+            {scan.license_flag_count}
+          </SummaryTile>
+          <SummaryTile label="Unknown licenses" tone={scan.license_unknown_count > 0 ? 'warn' : 'good'}>
+            {scan.license_unknown_count}
+          </SummaryTile>
+          <SummaryTile label="Vulnerable" tone={scan.vulnerable_count > 0 ? 'bad' : 'good'}>
+            {scan.vulnerable_count}
+          </SummaryTile>
         </div>
 
         {deps.length === 0 ? (

@@ -72,7 +72,38 @@
   padding: 12px 14px;
   background: var(--color-surface-sunken);
   border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-border-strong);
   border-radius: var(--radius-md);
+}
+
+/* Red / yellow / green at a glance — a tile is only ever as alarming as what it's actually
+   reporting: "0 flags" reads as clean, "0 vulnerable" reads as clean, an "unknown" verdict or
+   count reads as caution (needs a look), never as a false pass. */
+.scan-detail__summary-item--good {
+  background: var(--color-success-soft);
+  border-left-color: var(--color-success);
+}
+
+.scan-detail__summary-item--good .scan-detail__summary-value {
+  color: #15803d;
+}
+
+.scan-detail__summary-item--warn {
+  background: var(--color-wait-soft);
+  border-left-color: var(--color-wait);
+}
+
+.scan-detail__summary-item--warn .scan-detail__summary-value {
+  color: #b45309;
+}
+
+.scan-detail__summary-item--bad {
+  background: var(--color-critical-soft);
+  border-left-color: var(--color-critical);
+}
+
+.scan-detail__summary-item--bad .scan-detail__summary-value {
+  color: #b91c1c;
 }
 
 .scan-detail__summary-label {
