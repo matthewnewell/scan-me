@@ -2,6 +2,31 @@ import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import './SplashPage.css'
 
+const HOW_IT_WORKS = [
+  {
+    title: 'Public data only, read-only',
+    body: 'Every call is a GET against public services — GitHub\'s REST API, the npm registry, PyPI\'s JSON API, OSV.dev\'s vulnerability database. Nothing is ever pushed, written, or modified in the scanned repo.',
+  },
+  {
+    title: 'No code execution',
+    body: "package.json and requirements.txt are read and parsed as plain text — never installed, never run, no npm install or pip install anywhere in the pipeline. There's no sandbox because nothing ever executes.",
+  },
+  {
+    title: 'No authentication, nothing to leak',
+    body: 'No GitHub token, no API key, no credential of any kind lives in this app. It can only reach what\'s already public — a private repo simply comes back "not found".',
+  },
+  {
+    title: 'What actually leaves the network',
+    body: 'A repo owner/name, and each dependency\'s package name and version — sent to the four services below to look up licenses and vulnerabilities. Never file contents, never source code, never anything else in the repo.',
+  },
+  {
+    title: 'What gets kept',
+    body: "Only the scan's own report — license and vulnerability verdicts — in this app's own local database. No source code or business data is copied anywhere.",
+  },
+]
+
+const OUTBOUND_HOSTS = ['api.github.com', 'registry.npmjs.org', 'pypi.org', 'api.osv.dev']
+
 const FEATURES = [
   {
     title: 'Our side, not theirs',
@@ -35,28 +60,28 @@ export default function SplashPage() {
           </header>
 
           <figure className="splash-figure">
-            <svg viewBox="0 0 360 150" role="img" aria-labelledby="sm-figure-title">
+            <svg viewBox="0 0 360 130" role="img" aria-labelledby="sm-figure-title">
               <title id="sm-figure-title">
                 A GitHub repo flows through a scan into three checks — repo license, dependency
                 licenses, and known vulnerabilities — each landing on an approved, flagged, or
                 unknown verdict.
               </title>
-              <rect x="8" y="58" width="90" height="34" rx="8" fill="var(--color-surface-sunken)" stroke="var(--color-border-strong)" strokeWidth="1.5" />
-              <text x="53" y="79" textAnchor="middle" className="splash-figure__label">github.com/…</text>
+              <rect x="8" y="48" width="90" height="30" rx="8" fill="var(--color-surface-sunken)" stroke="var(--color-border-strong)" strokeWidth="1.5" />
+              <text x="53" y="67" textAnchor="middle" className="splash-figure__label">github.com/…</text>
 
-              <path d="M98 75 L134 75" stroke="var(--color-accent)" strokeWidth="2" markerEnd="url(#sm-arrow)" />
+              <path d="M98 63 L134 63" stroke="var(--color-accent)" strokeWidth="2" markerEnd="url(#sm-arrow)" />
 
-              <rect x="136" y="58" width="70" height="34" rx="8" fill="var(--color-accent-soft)" stroke="var(--color-accent)" strokeWidth="1.5" />
-              <text x="171" y="79" textAnchor="middle" className="splash-figure__label">Scan Me</text>
+              <rect x="136" y="48" width="70" height="30" rx="8" fill="var(--color-accent-soft)" stroke="var(--color-accent)" strokeWidth="1.5" />
+              <text x="171" y="67" textAnchor="middle" className="splash-figure__label">Scan Me</text>
 
               {[
-                { y: 14, label: 'Repo license', color: 'var(--color-success)' },
-                { y: 68, label: 'Dependency licenses', color: 'var(--color-wait)' },
-                { y: 122, label: 'Known vulnerabilities', color: 'var(--color-critical)' },
+                { y: 8, label: 'Repo license', color: 'var(--color-success)' },
+                { y: 54, label: 'Dependency licenses', color: 'var(--color-wait)' },
+                { y: 100, label: 'Known vulnerabilities', color: 'var(--color-critical)' },
               ].map((row) => (
                 <g key={row.label}>
                   <path
-                    d={`M206 75 L${252} ${row.y + 9}`}
+                    d={`M206 63 L${252} ${row.y + 9}`}
                     stroke="var(--color-border-strong)"
                     strokeWidth="1.5"
                     fill="none"
@@ -84,6 +109,29 @@ export default function SplashPage() {
               </div>
             ))}
           </div>
+
+          <section className="splash-howitworks">
+            <h2 className="splash-howitworks__title">How the scan is actually performed</h2>
+            <p className="splash-howitworks__sub">
+              For whoever has to sign off on running this against a real repo:
+            </p>
+            <dl className="splash-howitworks__list">
+              {HOW_IT_WORKS.map((item) => (
+                <div key={item.title} className="splash-howitworks__item">
+                  <dt>{item.title}</dt>
+                  <dd>{item.body}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="splash-howitworks__hosts">
+              <span className="splash-howitworks__hosts-label">Every outbound destination, nothing else:</span>
+              <div className="splash-howitworks__hosts-list">
+                {OUTBOUND_HOSTS.map((h) => (
+                  <code key={h} className="splash-howitworks__host">{h}</code>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>

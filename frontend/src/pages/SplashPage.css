@@ -105,3 +105,82 @@
   line-height: 1.6;
   color: var(--color-text-secondary);
 }
+
+/* ── "How the scan is actually performed" — the trust/security explainer ─────────────────── */
+.splash-howitworks {
+  padding: 22px 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.splash-howitworks__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.splash-howitworks__sub {
+  margin: -10px 0 0;
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
+}
+
+.splash-howitworks__list {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px 24px;
+}
+
+.splash-howitworks__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.splash-howitworks__item dt {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.splash-howitworks__item dd {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+.splash-howitworks__hosts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+}
+
+.splash-howitworks__hosts-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-text-faint);
+}
+
+.splash-howitworks__hosts-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.splash-howitworks__host {
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-text);
+}
