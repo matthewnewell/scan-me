@@ -23,6 +23,10 @@ const HOW_IT_WORKS = [
     title: 'What gets kept',
     body: "Only the scan's own report — license and vulnerability verdicts — in this app's own local database. No source code or business data is copied anywhere.",
   },
+  {
+    title: 'What "vulnerable" actually means here',
+    body: 'Each dependency version is checked against OSV.dev — an open, continuously-updated vulnerability database maintained by Google, aggregating the same advisory sources most tooling already trusts (GitHub Security Advisories, the PyPA and npm advisory databases, and more). It answers one specific question: has this exact package version been publicly disclosed as vulnerable? It is not malware detection, and this app does not run static analysis on the repo\'s own source — an undisclosed or zero-day issue won\'t show up here.',
+  },
 ]
 
 const OUTBOUND_HOSTS = ['api.github.com', 'registry.npmjs.org', 'pypi.org', 'api.osv.dev']
