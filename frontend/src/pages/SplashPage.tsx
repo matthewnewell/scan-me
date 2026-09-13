@@ -60,7 +60,7 @@ export default function SplashPage() {
           </header>
 
           <figure className="splash-figure">
-            <svg viewBox="0 0 360 130" role="img" aria-labelledby="sm-figure-title">
+            <svg viewBox="0 0 400 130" role="img" aria-labelledby="sm-figure-title">
               <title id="sm-figure-title">
                 A GitHub repo flows through a scan into three checks — repo license, dependency
                 licenses, and known vulnerabilities — each landing on an approved, flagged, or
@@ -81,13 +81,13 @@ export default function SplashPage() {
               ].map((row) => (
                 <g key={row.label}>
                   <path
-                    d={`M206 63 L${252} ${row.y + 9}`}
+                    d={`M206 63 L${228} ${row.y + 9}`}
                     stroke="var(--color-border-strong)"
                     strokeWidth="1.5"
                     fill="none"
                   />
-                  <rect x="252" y={row.y} width="100" height="18" rx="9" fill="var(--color-surface)" stroke={row.color} strokeWidth="1.5" />
-                  <text x="302" y={row.y + 13} textAnchor="middle" className="splash-figure__verdict" fill={row.color}>
+                  <rect x="228" y={row.y} width="164" height="18" rx="9" fill="var(--color-surface)" stroke={row.color} strokeWidth="1.5" />
+                  <text x="310" y={row.y + 13} textAnchor="middle" className="splash-figure__verdict" fill={row.color}>
                     {row.label}
                   </text>
                 </g>
