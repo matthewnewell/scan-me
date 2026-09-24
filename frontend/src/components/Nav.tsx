@@ -1,23 +1,20 @@
+import { AppHeader, tabClass } from '@conways/drawer'
 import { NavLink } from 'react-router-dom'
-import './Nav.css'
 
-/** Persistent top navbar — same pattern as the sibling apps: brand links to the splash page,
- * one top-level link for the operational page. */
+/** The ecosystem's shared header (@conways/drawer's AppHeader): back to where you came from in
+ * Conway's Depot, the app and its tabs, and the "viewing as" user menu. */
 export default function Nav() {
   return (
-    <nav className="sm-nav">
-      <NavLink to="/about" className="sm-nav__brand">
-        Scan Me
-      </NavLink>
-      <div className="sm-nav__links">
-        <NavLink
-          to="/"
-          end
-          className={({ isActive }) => `sm-nav__link ${isActive ? 'sm-nav__link--active' : ''}`}
-        >
-          Scans
+    <AppHeader
+      brand={
+        <NavLink to="/about" className="ch-brand">
+          Scan Me
         </NavLink>
-      </div>
-    </nav>
+      }
+    >
+      <NavLink to="/" end className={({ isActive }) => tabClass(isActive)}>
+        Scans
+      </NavLink>
+    </AppHeader>
   )
 }
